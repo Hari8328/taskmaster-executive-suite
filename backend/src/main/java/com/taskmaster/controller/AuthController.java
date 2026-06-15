@@ -37,6 +37,18 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
+        if (signUpRequest.getUsername() == null || signUpRequest.getUsername().trim().length() < 3) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: Username must be at least 3 characters long!");
+        }
+
+        if (signUpRequest.getPassword() == null || signUpRequest.getPassword().trim().length() < 6) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: Password must be at least 6 characters long!");
+        }
+
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()

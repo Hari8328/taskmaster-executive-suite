@@ -40,7 +40,7 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, org.springframework.data.domain.Sort.by("id").descending());
         Page<Task> taskPage = taskRepository.findByUser(user, pageable);
 
         PageResponse<Task> pageResponse = PageResponse.<Task>builder()
@@ -199,7 +199,7 @@ public class TaskController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
 
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, org.springframework.data.domain.Sort.by("id").descending());
         Page<Task> taskPage = taskRepository.findAll(pageable);
 
         PageResponse<Task> pageResponse = PageResponse.<Task>builder()

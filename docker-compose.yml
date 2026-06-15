@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: Hari@8328
       MYSQL_DATABASE: taskmaster
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -25,6 +25,10 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/taskmaster?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Hari@8328
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+    volumes:
+      - uploads_data:/app/uploads
     depends_on:
       - mysql
 
@@ -41,3 +45,4 @@ services:
 
 volumes:
   mysql_data:
+  uploads_data:

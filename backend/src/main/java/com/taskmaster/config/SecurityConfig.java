@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/health").permitAll()
                 .requestMatchers("/api/inspiration/**").permitAll()
                 .requestMatchers("/api/categories/**").permitAll()
+                .requestMatchers("/api/uploads/**").permitAll()
                 .requestMatchers("/api/tasks/admin/**", "/api/user/admin/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             );

@@ -44,7 +44,7 @@ public class AiController {
             throw new IllegalStateException("Gemini API key is not configured.");
         }
 
-        // We use gemini-3.5-flash to match the original mock backend model configuration
+        // We use gemini-3.5-flash to match the environment model configuration
         String modelName = "gemini-3.5-flash";
         String urlStr = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + apiKey;
 

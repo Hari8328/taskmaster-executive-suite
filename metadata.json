@@ -1,0 +1,6 @@
+{
+  "name": "Focused Editorial",
+  "description": "A high-end, kinetic task management dashboard with an editorial design aesthetic.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

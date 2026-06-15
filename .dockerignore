@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+backend/target
+frontend/dist
+dist
+.git
+.gitignore
+taskmaster.sqlite
+taskmaster.sqlite-journal

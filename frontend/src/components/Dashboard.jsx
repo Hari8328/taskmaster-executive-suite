@@ -258,6 +258,17 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
       console.error("Failed to start task");
     }
   };
+  const handleDeleteTask = async (e, task) => {
+    e?.stopPropagation();
+    if (!window.confirm(`Are you sure you want to delete "${task.title}"?`)) return;
+    try {
+      await taskService.deleteTask(Number(task.id));
+      setIsModalOpen(false);
+      fetchTasks();
+    } catch (err) {
+      console.error("Failed to delete task:", err);
+    }
+  };
   const formatTime = (dateStr) => {
     if (!dateStr) return "";
     const date = new Date(dateStr);
@@ -586,6 +597,7 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
     isOpen={isModalOpen}
     onClose={() => setIsModalOpen(false)}
     onEdit={handleEditClick}
+    onDelete={(t) => handleDeleteTask(null, t)}
   />
       <TaskFormModal
     task={taskToEdit}
@@ -1295,6 +1307,13 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
       className="p-3 text-editorial-muted hover:text-editorial-ink hover:bg-editorial-muted/10 rounded transition-all ml-2 shrink-0"
     >
                       <MoreHorizontal size={24} />
+                    </button>
+                    <button
+                      onClick={(e) => handleDeleteTask(e, task)}
+                      className="p-3 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-all ml-1 shrink-0"
+                      title="Delete Task"
+                    >
+                      <Trash2 size={24} />
                     </button>
                   </motion.div>;
   })}

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, Calendar, Clock, Tag, AlertCircle, PlayCircle, CheckCircle2, User as UserIcon, Sparkles, Loader2, ClipboardList } from "lucide-react";
 import { cn } from "../lib/utils";
 import { breakdownTask } from "../lib/gemini";
-const TaskModal = ({ task, isOpen, onClose, onEdit }) => {
+const TaskModal = ({ task, isOpen, onClose, onEdit, onDelete }) => {
   const [isBreakingDown, setIsBreakingDown] = useState(false);
   const [substeps, setSubsteps] = useState([]);
   const [error, setError] = useState(null);
@@ -206,6 +206,14 @@ const TaskModal = ({ task, isOpen, onClose, onEdit }) => {
             </div>
 
             <div className="p-8 bg-editorial-ink/5 flex justify-end space-x-4">
+              {onDelete && (
+                <button
+                  onClick={() => onDelete(task)}
+                  className="px-6 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition-colors mr-auto"
+                >
+                  Delete Task
+                </button>
+              )}
               <button
     onClick={onClose}
     className="px-6 py-2 text-sm font-medium text-editorial-muted hover:text-editorial-ink transition-colors"

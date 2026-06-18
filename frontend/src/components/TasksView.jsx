@@ -98,6 +98,17 @@ const TasksView = ({ refreshTrigger }) => {
       console.error("Failed to start task");
     }
   };
+  const handleDeleteTask = async (e, task) => {
+    e?.stopPropagation();
+    if (!window.confirm(`Are you sure you want to delete "${task.title}"?`)) return;
+    try {
+      await taskService.deleteTask(Number(task.id));
+      setIsModalOpen(false);
+      fetchTasks();
+    } catch (err) {
+      console.error("Failed to delete task:", err);
+    }
+  };
   const safeTasks = Array.isArray(tasks) ? tasks : [];
   const categories = Array.from(new Set(safeTasks.map((t) => t.category))).filter(Boolean);
   const priorities = ["low", "medium", "high"];
@@ -199,6 +210,7 @@ const TasksView = ({ refreshTrigger }) => {
       setIsEditModalOpen(true);
       setIsModalOpen(false);
     }}
+    onDelete={(t) => handleDeleteTask(null, t)}
   />
       <TaskFormModal
     task={taskToEdit}
@@ -426,6 +438,13 @@ const TasksView = ({ refreshTrigger }) => {
       className="p-2 text-editorial-muted hover:text-editorial-ink md:opacity-0 group-hover:opacity-100 transition-all shrink-0"
     >
                   <MoreHorizontal size={18} />
+                </button>
+                <button
+                  onClick={(e) => handleDeleteTask(e, task)}
+                  className="p-2 text-red-500 hover:text-red-700 md:opacity-0 group-hover:opacity-100 transition-all shrink-0 ml-1"
+                  title="Delete Task"
+                >
+                  <Trash2 size={18} />
                 </button>
               </motion.div>;
   })}

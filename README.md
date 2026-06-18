@@ -64,8 +64,29 @@ To let another person access your website from outside your home network, use th
 
 ---
 
+---
+
+## ☁️ Cloud Deployment (24/7 Live Website)
+
+To make your website run 24/7 without needing your laptop to stay open, you can deploy it to **Render.com** using the pre-configured Blueprint template.
+
+### Deploying to Render
+1. Push your latest code to your **GitHub** repository.
+2. Sign up or log in to [Render.com](https://render.com).
+3. In the Render Dashboard, click **New** ➔ **Blueprint**.
+4. Connect your GitHub repository.
+5. Render will automatically read the `render.yaml` file and set up three services:
+   - `db` (MySQL container)
+   - `backend` (Spring Boot API container)
+   - `frontend` (React Nginx web container)
+6. Go to the **backend** service settings, and add your `GEMINI_API_KEY` under Environment Variables.
+7. Once Render finishes building, you will get a permanent live link (e.g., `https://frontend-xxxx.onrender.com`) that works on any mobile or desktop device even if your laptop is closed.
+
+---
+
 ## 📂 Project Structure
 * `frontend/`: React components, views, styling (`index.css`), and asset management.
 * `backend/`: Spring Boot Java application controllers, models, and security layers.
 * `docker-compose.yml`: Multi-container Docker configuration.
+* `render.yaml`: Cloud deployment orchestration configuration.
 * `README.md`: Project developer guide.

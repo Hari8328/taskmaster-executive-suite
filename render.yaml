@@ -1,0 +1,41 @@
+services:
+  # 1. Database Service (MySQL)
+  - type: web
+    name: db
+    runtime: docker
+    plan: free
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: Hari@8328
+      - key: MYSQL_DATABASE
+        value: taskmaster
+      - key: PORT
+        value: 3306
+
+  # 2. Spring Boot Backend Service
+  - type: web
+    name: backend
+    runtime: docker
+    plan: free
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://db:3306/taskmaster?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: Hari@8328
+      - key: GEMINI_API_KEY
+        sync: false # You will enter your API Key in the Render Dashboard
+      - key: GOOGLE_API_KEY
+        sync: false # You will enter your API Key in the Render Dashboard
+
+  # 3. React Frontend Service (Served via Nginx)
+  - type: web
+    name: frontend
+    runtime: docker
+    plan: free
+    dockerfilePath: frontend/Dockerfile
+    envVars:
+      - key: PORT
+        value: 80

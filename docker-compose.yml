@@ -21,6 +21,9 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/taskmaster?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root

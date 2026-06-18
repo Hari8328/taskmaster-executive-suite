@@ -71,6 +71,7 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
   const [isDeepFocusActivated, setIsDeepFocusActivated] = useState(false);
   const [deepFocusTask, setDeepFocusTask] = useState(null);
   const [isWeeklyDigestOpen, setIsWeeklyDigestOpen] = useState(false);
+  const [hasFetchedAI, setHasFetchedAI] = useState(false);
   const handleLaunchDeepFocus = (task) => {
     setDeepFocusTask(task);
     setIsDeepFocusActivated(true);
@@ -193,8 +194,9 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
         const e = new Date(t.completedAt).getTime();
         return acc + Math.max(0, e - s);
       }, 0);
-      if (hasGeminiKey) {
+      if (hasGeminiKey && !hasFetchedAI) {
         fetchAIInsights(initialStats, formatTotalTime(totalTimeMs), content);
+        setHasFetchedAI(true);
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);

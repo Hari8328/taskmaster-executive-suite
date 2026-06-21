@@ -22,7 +22,7 @@ Make sure you have the following installed on your computer:
 * **Node.js** (v18+; only if running outside Docker).
 
 ### 2. Start the Website (Docker Mode)
-Open PowerShell or Command Prompt in the root project folder (`C:\Users\ihari\Downloads\TaskMaster`) and run:
+Open PowerShell or Command Prompt in the root project folder (where this README is located) and run:
 ```powershell
 docker-compose up -d --build
 ```
@@ -44,9 +44,9 @@ docker-compose down
 
 To let another person access your website from outside your home network, use the pre-configured **ngrok** tunnel:
 
-1. Open a terminal and go to the ngrok folder:
+1. Open a terminal and go to the folder where you extracted ngrok:
    ```cmd
-   cd C:\Users\ihari\Downloads\ngrok-v3-stable-windows-amd64
+   cd /path/to/your/ngrok-folder
    ```
 2. Run the tunnel command:
    ```cmd

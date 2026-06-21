@@ -33,7 +33,11 @@ const Login = ({ onLogin }) => {
       }
       onLogin();
     } catch (err) {
-      setError(err.response?.data?.message || err.response?.data || "Authentication failed");
+      let msg = err.response?.data?.message || err.response?.data || "Authentication failed";
+      if (typeof msg === "string" && msg.trim().startsWith("<!DOCTYPE")) {
+        msg = "Authentication failed: Network connection interrupted. Please ensure you bypass the ngrok warning first.";
+      }
+      setError(msg);
     } finally {
       setLoading(false);
     }

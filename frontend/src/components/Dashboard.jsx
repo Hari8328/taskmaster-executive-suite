@@ -925,7 +925,7 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
           <LiveClock />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           <div className="border border-editorial-border p-6 space-y-4">
             <p className="font-mono text-xs uppercase text-editorial-muted">Total Focus</p>
             <p className="text-4xl md:text-5xl font-serif font-semibold">
@@ -965,6 +965,21 @@ const Dashboard = ({ refreshTrigger, onViewChange }) => {
                   </span>}
               </div>
               <p className="text-[10px] text-editorial-muted uppercase tracking-wider font-mono">Growth & Focus Index</p>
+            </div>
+          </div>
+
+          <div className="border border-editorial-border p-6 space-y-4 bg-orange-50/10 hover:border-orange-500/20 transition-all relative overflow-hidden flex flex-col justify-between">
+            <div>
+              <p className="font-mono text-xs uppercase text-orange-600 font-bold">Streak Days</p>
+              <p className="text-4xl md:text-5xl font-serif font-semibold text-orange-700 mt-2">
+                {streak < 10 ? `0${streak}` : streak}
+              </p>
+            </div>
+            <div className="flex justify-between items-end">
+              <p className="text-xs text-editorial-muted uppercase tracking-wider">Consecutive Days</p>
+              <div className="text-orange-300/40 pointer-events-none transform translate-y-1 translate-x-1">
+                <Trophy size={20} />
+              </div>
             </div>
           </div>
 
